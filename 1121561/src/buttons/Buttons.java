@@ -1,4 +1,4 @@
-package visual;
+package buttons;
 
 import java.awt.Container;
 import java.awt.Dimension;

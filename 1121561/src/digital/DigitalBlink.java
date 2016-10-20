@@ -1,8 +1,6 @@
-package logic;
+package digital;
 
 import java.awt.Color;
-
-import visual.DigitalFrame;
 
 public class DigitalBlink extends Thread {
 	

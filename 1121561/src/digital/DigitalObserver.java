@@ -1,9 +1,9 @@
-package logic;
+package digital;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import visual.DigitalFrame;
+import logic.ClocksControllers;
 
 public class DigitalObserver implements Observer {
 

@@ -1,9 +1,9 @@
-package logic;
+package analog;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import visual.AnalogFrame;
+import logic.ClocksControllers;
 
 public class AnalogObserver implements Observer {
 

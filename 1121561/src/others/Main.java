@@ -1,6 +1,6 @@
 package others;
+import buttons.Buttons;
 import logic.ClocksControllers;
-import visual.Buttons;
 
 public class Main extends Thread {
 

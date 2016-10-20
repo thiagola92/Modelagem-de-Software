@@ -6,6 +6,9 @@ import java.util.Observable;
 
 import javax.swing.Timer;
 
+import analog.AnalogObserver;
+import digital.DigitalObserver;
+
 public class ClocksControllers extends Observable implements ActionListener {
 	
 	private int hour = 15;
@@ -44,7 +47,6 @@ public class ClocksControllers extends Observable implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		ms += 10000;
 		ms = ms + 100;
 		if (ms >= 1000) {
 			sec += (ms/1000);

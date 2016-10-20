@@ -1,4 +1,4 @@
-package visual;
+package analog;
 
 import javax.swing.JFrame;
 

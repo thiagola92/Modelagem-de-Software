@@ -1,4 +1,4 @@
-package visual;
+package digital;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -8,8 +8,6 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import logic.DigitalBlink;
 
 public class DigitalFrame extends JFrame {
 	
