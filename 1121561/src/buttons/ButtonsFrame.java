@@ -9,7 +9,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Buttons extends JFrame {
+public class ButtonsFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -18,7 +18,7 @@ public class Buttons extends JFrame {
 	
 	private Container panel;
 
-	public Buttons() {
+	public ButtonsFrame() {
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);

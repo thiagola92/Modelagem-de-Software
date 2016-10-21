@@ -1,5 +1,5 @@
 package others;
-import buttons.Buttons;
+import buttons.ButtonsFrame;
 import logic.ClocksControllers;
 
 public class Main extends Thread {
@@ -8,7 +8,7 @@ public class Main extends Thread {
 		// TODO Auto-generated method stub
 		
 		ClocksControllers clocks = new ClocksControllers();
-		Buttons b = new Buttons();
+		ButtonsFrame b = new ButtonsFrame();
 
 	}
 
