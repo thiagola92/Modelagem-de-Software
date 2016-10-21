@@ -84,4 +84,14 @@ public class ButtonsFrame extends JFrame {
 		
 		this.pack();
 	}
+
+	public JButton getButtonA() {
+		return buttonA;
+	}
+
+	public JButton getButtonB() {
+		return buttonB;
+	}
+	
+	
 }

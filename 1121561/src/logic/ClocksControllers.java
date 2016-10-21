@@ -43,6 +43,18 @@ public class ClocksControllers extends Observable implements ActionListener {
 		notifyObservers();
 		System.out.println("hora:" + this.hour + "\t\tmin:" + this.min + "\t\tsec:" + this.sec);
 	}
+	
+	public void plusSec() {
+		this.setTime(hour, min, sec+1);
+	}
+	
+	public void plusMin() {
+		this.setTime(hour, min+1, sec);
+	}
+	
+	public void plusHour() {
+		this.setTime(hour+1, min, sec);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
