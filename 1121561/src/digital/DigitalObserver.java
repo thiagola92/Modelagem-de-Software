@@ -12,7 +12,7 @@ public class DigitalObserver implements Observer {
 	
 	public DigitalObserver(ClocksControllers cc) {
 		CC = cc;
-		DC = new DigitalFrame();
+		DC = new DigitalFrame(cc);
 	}
 	
 	@Override

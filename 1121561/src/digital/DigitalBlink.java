@@ -2,17 +2,21 @@ package digital;
 
 import java.awt.Color;
 
+import logic.ClocksControllers;
+
 public class DigitalBlink extends Thread {
 	
-	DigitalFrame clock;
+	private DigitalFrame clock;
+	private ClocksControllers CC;
 	
-	public DigitalBlink(DigitalFrame clock) {
+	public DigitalBlink(DigitalFrame clock, ClocksControllers CC) {
 		this.clock = clock;
+		this.CC = CC;
 	}
 	
 	public void run() {
 		while(true) {
-			if (clock.isHourSelected() == true) {
+			if (CC.isHourSelected() == true) {
 				clock.hourColor(Color.RED);
 
 				try {
@@ -28,7 +32,7 @@ public class DigitalBlink extends Thread {
 			} else
 				clock.hourColor(Color.BLACK);
 
-			if (clock.isMinSelected() == true) {
+			if (CC.isMinSelected() == true) {
 				clock.minColor(Color.RED);
 
 				try {

@@ -1,28 +1,30 @@
 package buttons;
 
-import javax.swing.JButton;
+import logic.Clock;
 
 public class ButtonAThread extends Thread {
+
+	private Clock clock;
 	
-	private JButton A;
+	private boolean readyToChangeState = true;
 	
-	public ButtonAThread(JButton A) {
-		this.A = A;
+	public ButtonAThread(Clock clock) {
+		this.clock = clock;
 	}
 	
 	public void run() {
 		while(true) {
-			boolean armed = A.getModel().isArmed();
-			boolean pressed = A.getModel().isPressed();
-			boolean rollover = A.getModel().isRollover();
-			System.out.println("Armed = " + armed);
-			System.out.println("Pressed = " + pressed);
-			System.out.println("Rollover = " + rollover);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			boolean pressed = clock.getButtonA().getModel().isPressed();
+			
+			//System.out.println("ready = " + readyToChangeState + "\tPressed = " + pressed);
+			
+			synchronized (this) {
+				if (readyToChangeState == true && pressed == true) {
+					readyToChangeState = false;
+					clock.nextState();
+				} else if (readyToChangeState == false && pressed == false) {
+					readyToChangeState = true;
+				}
 			}
 		}
 	}

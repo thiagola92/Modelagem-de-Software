@@ -9,6 +9,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import logic.ClocksControllers;
+
 public class DigitalFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -19,10 +21,7 @@ public class DigitalFrame extends JFrame {
 	private JLabel twoDots;
 	private JLabel min;
 	
-	private boolean hourSelected;
-	private boolean minSelected;
-	
-	public DigitalFrame() {
+	public DigitalFrame(ClocksControllers CC) {
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
@@ -33,9 +32,6 @@ public class DigitalFrame extends JFrame {
 		hour = new JLabel("15");
 		twoDots = new JLabel(":");
 		min = new JLabel("00");
-		
-		hourSelected = false;
-		minSelected = false;
 		
 		Font f = new Font(hour.getFont().getName(), hour.getFont().getStyle(), hour.getFont().getSize()*10);
 		hour.setFont(f);
@@ -53,7 +49,7 @@ public class DigitalFrame extends JFrame {
 		
 		this.pack();
 		
-		(new DigitalBlink(this)).start();
+		(new DigitalBlink(this, CC)).start();
 	}
 	
 	public void setTime(int hour, int min) {
@@ -73,22 +69,6 @@ public class DigitalFrame extends JFrame {
 			this.min.setText("" + min);
 		else
 			this.min.setText("0" + min);
-	}
-	
-	public boolean isHourSelected() {
-		return hourSelected;
-	}
-
-	public boolean isMinSelected() {
-		return minSelected;
-	}
-
-	public void setHourSelected(boolean s) {
-		this.hourSelected = s;
-	}
-	
-	public void setMinSelected(boolean s) {
-		this.minSelected = s;
 	}
 	
 	public void hourColor(Color c) {

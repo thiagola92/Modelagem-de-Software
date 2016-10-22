@@ -5,41 +5,45 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import buttons.ButtonAThread;
 import buttons.ButtonsFrame;
 import states.Resting;
-import states.State;
+import states.StateClock;
 
 public class Clock implements ActionListener {
 	
 	private ClocksControllers CC;
-	
 	private ButtonsFrame BF;
-	private JButton A;
-	private JButton B;
-	
-	private State S;
+	private StateClock S;
 	
 	public Clock() {
 		this.CC = new ClocksControllers();
-		
 		this.BF = new ButtonsFrame();
-		this.A = BF.getButtonA();
-		this.B = BF.getButtonB();
+		this.S = new Resting();
 		
-		this.S = new Resting(CC);
+		BF.getButtonB().addActionListener(this);
 		
-		B.addActionListener(this);
+		(new ButtonAThread(this)).start();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (S.getState() == "ChangingHour") {
+		System.out.println(S.getState());
+		if (S.getState() == "ChangingHour")
 			CC.plusHour();
-		} else if (S.getState() == "ChangingMin") {
+		else if (S.getState() == "ChangingMin")
 			CC.plusMin();
-		} else {
+		else {
 			System.out.println("Nao fazer nada");
 		}
+	}
+	
+	public void nextState() {
+		S = S.active(CC);
+	}
+	
+	public JButton getButtonA() {
+		return BF.getButtonA();
 	}
 
 }

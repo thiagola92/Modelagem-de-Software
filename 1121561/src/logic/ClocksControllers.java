@@ -18,6 +18,9 @@ public class ClocksControllers extends Observable implements ActionListener {
 	private Timer timer;
 	private int ms = 0;
 	
+	private boolean hourSelected = false;
+	private boolean minSelected = false;
+	
 	public ClocksControllers() {
 
 		this.addObserver(new AnalogObserver(this));
@@ -41,7 +44,7 @@ public class ClocksControllers extends Observable implements ActionListener {
 		
 		setChanged();
 		notifyObservers();
-		System.out.println("hora:" + this.hour + "\t\tmin:" + this.min + "\t\tsec:" + this.sec);
+		//System.out.println("hora:" + this.hour + "\t\tmin:" + this.min + "\t\tsec:" + this.sec);
 	}
 	
 	public void plusSec() {
@@ -81,6 +84,22 @@ public class ClocksControllers extends Observable implements ActionListener {
 
 	public int getSec() {
 		return sec;
+	}
+	
+	public boolean isHourSelected() {
+		return hourSelected;
+	}
+
+	public boolean isMinSelected() {
+		return minSelected;
+	}
+
+	public void setHourSelected(boolean s) {
+		this.hourSelected = s;
+	}
+	
+	public void setMinSelected(boolean s) {
+		this.minSelected = s;
 	}
 
 }
