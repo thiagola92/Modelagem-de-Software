@@ -15,15 +15,19 @@ public class DigitalBlink extends Thread {
 	}
 	
 	public void run() {
+		
+		int sleepTime = 250;
+		
 		while(true) {
 			if (CC.isHourSelected() == true) {
 				clock.hourColor(Color.RED);
+				clock.minColor(Color.BLACK);
 
 				try {
 					clock.setHourVisible(false);
-					sleep(1000);
+					sleep(sleepTime);
 					clock.setHourVisible(true);
-					sleep(1000);
+					sleep(sleepTime);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -34,12 +38,13 @@ public class DigitalBlink extends Thread {
 
 			if (CC.isMinSelected() == true) {
 				clock.minColor(Color.RED);
+				clock.hourColor(Color.BLACK);
 
 				try {
 					clock.setMinVisible(false);
-					sleep(1000);
+					sleep(sleepTime);
 					clock.setMinVisible(true);
-					sleep(1000);
+					sleep(sleepTime);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
