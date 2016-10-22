@@ -16,25 +16,27 @@ public class Clock implements ActionListener {
 	private ButtonsFrame BF;
 	private StateClock S;
 	
+	private ButtonAThread BaT;
+	
 	public Clock() {
 		this.CC = new ClocksControllers();
 		this.BF = new ButtonsFrame();
 		this.S = new Resting();
 		
+		this.BaT = new ButtonAThread(this);
+		
 		BF.getButtonB().addActionListener(this);
 		
-		(new ButtonAThread(this)).start();
+		BaT.start();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(S.getState());
-		if (S.getState() == "ChangingHour")
+		if (S.getState() == "ChangingHour" && BaT.isHoldingButton())
 			CC.plusHour();
-		else if (S.getState() == "ChangingMin")
+		else if (S.getState() == "ChangingMin" && BaT.isHoldingButton())
 			CC.plusMin();
 		else {
-			System.out.println("Nao fazer nada");
 		}
 	}
 	
