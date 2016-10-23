@@ -4,25 +4,25 @@ import logic.Clock;
 
 public class ButtonAThread extends Thread {
 
-	private Clock clock;
+	private Buttons buttons;
 	
 	private boolean readyToChangeState = true;
 	private boolean holdingButton = false;
 	
-	public ButtonAThread(Clock clock) {
-		this.clock = clock;
+	public ButtonAThread(Buttons buttons) {
+		this.buttons = buttons;
 	}
 	
 	public void run() {
 		while(true) {
-			boolean pressed = clock.getButtonA().getModel().isPressed();
-			boolean rollover = clock.getButtonA().getModel().isRollover();
+			boolean pressed = buttons.getButtonA().getModel().isPressed();
+			boolean rollover = buttons.getButtonA().getModel().isRollover();
 			
 			synchronized (this) {
 				if (readyToChangeState == true && pressed == true) {
 					readyToChangeState = false;
 					holdingButton = true;
-					clock.nextState();
+					buttons.nextState();
 				} else if (readyToChangeState == false && pressed == false) {
 					readyToChangeState = true;
 				} else if (pressed == false && rollover == true) {

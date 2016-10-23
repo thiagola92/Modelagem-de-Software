@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import buttons.ButtonAThread;
+import buttons.Buttons;
 import buttons.ButtonsFrame;
 import states.Resting;
 import states.StateClock;
@@ -13,28 +14,20 @@ import states.StateClock;
 public class Clock implements ActionListener {
 	
 	private ClocksControllers CC;
-	private ButtonsFrame BF;
+	private Buttons B;
 	private StateClock S;
-	
-	private ButtonAThread BaT;
 	
 	public Clock() {
 		this.CC = new ClocksControllers();
-		this.BF = new ButtonsFrame();
+		this.B = new Buttons(this);
 		this.S = new Resting();
-		
-		this.BaT = new ButtonAThread(this);
-		
-		BF.getButtonB().addActionListener(this);
-		
-		BaT.start();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (S.getState() == "ChangingHour" && BaT.isHoldingButton())
+		if (S.getState() == "ChangingHour" && B.isHoldingButton())
 			CC.plusHour();
-		else if (S.getState() == "ChangingMin" && BaT.isHoldingButton())
+		else if (S.getState() == "ChangingMin" && B.isHoldingButton())
 			CC.plusMin();
 		else {
 		}
@@ -42,10 +35,6 @@ public class Clock implements ActionListener {
 	
 	public void nextState() {
 		S = S.active(CC);
-	}
-	
-	public JButton getButtonA() {
-		return BF.getButtonA();
 	}
 
 }
