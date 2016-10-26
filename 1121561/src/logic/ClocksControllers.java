@@ -48,11 +48,17 @@ public class ClocksControllers extends Observable implements ActionListener {
 	}
 	
 	public void plusSec() {
-		this.setTime(hour, min, sec+1);
+		if (sec+1 < 60)
+			this.setTime(hour, min, sec+1);
+		else
+			this.setTime(hour, min, 0);
 	}
 	
 	public void plusMin() {
-		this.setTime(hour, min+1, sec);
+		if (min+1 < 60)
+			this.setTime(hour, min+1, sec);
+		else
+			this.setTime(hour, 0, sec);
 	}
 	
 	public void plusHour() {
