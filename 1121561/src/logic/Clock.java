@@ -3,11 +3,7 @@ package logic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
-import buttons.ButtonAThread;
 import buttons.Buttons;
-import buttons.ButtonsFrame;
 import states.Resting;
 import states.StateClock;
 

@@ -1,7 +1,5 @@
 package buttons;
 
-import logic.Clock;
-
 public class ButtonAThread extends Thread {
 
 	private Buttons buttons;
@@ -22,10 +20,12 @@ public class ButtonAThread extends Thread {
 				if (readyToChangeState == true && pressed == true) {
 					readyToChangeState = false;
 					holdingButton = true;
+					System.out.println("Botão pressionado");
 					buttons.nextState();
 				} else if (readyToChangeState == false && pressed == false) {
 					readyToChangeState = true;
 				} else if (pressed == false && rollover == true) {
+					System.out.println("Botão solto");
 					holdingButton = false;
 				}
 			}

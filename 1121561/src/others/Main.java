@@ -1,7 +1,5 @@
 package others;
-import buttons.ButtonsFrame;
 import logic.Clock;
-import logic.ClocksControllers;
 
 public class Main extends Thread {
 
