@@ -34,7 +34,7 @@ public class AnalogFrame extends JFrame {
 	}
 	
 	private void setHour(int hour, int min) {
-		double length = height/2;
+		double length = height/4;
 		double pointX = (width/2) + length*Math.cos((oneOf12*hour) - (oneOf12*3) + (oneOf12*min/60));
 		double pointY = (height/2) + length*Math.sin((oneOf12*hour) - (oneOf12*3) + (oneOf12*min/60));
 		
@@ -50,7 +50,7 @@ public class AnalogFrame extends JFrame {
 	}
 	
 	private void setSec(int sec) {
-		double length = height/4;
+		double length = height/2;
 		double pointX = (width/2) + length*Math.cos((oneOf60*sec) - (oneOf60*15));
 		double pointY = (height/2) + length*Math.sin((oneOf60*sec) - (oneOf60*15));
 		
