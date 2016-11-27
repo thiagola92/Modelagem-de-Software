@@ -84,7 +84,7 @@ public class ClienteN extends Observable {
             	ultimaFraseRecebida = (ultimaFraseRecebida.split("C", 2))[1];
             	
             	if (!ultimaFraseRecebida.equals("###"))
-            		ultimaFraseRecebida = "C" + conexao.getInetAddress() + " >> " + ultimaFraseRecebida;
+            		ultimaFraseRecebida = "C" + nickname + " >> " + ultimaFraseRecebida;
             }
             
             setChanged();
