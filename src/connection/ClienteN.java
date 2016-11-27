@@ -72,17 +72,17 @@ public class ClienteN extends Observable {
             ultimaFrase = entrada.nextLine();
         	System.out.println("=> Mensagem recebida: " + ultimaFrase);
             
-            if(ultimaFrase.charAt(0) == 'C') {
+        	if(ultimaFrase.charAt(0) == 'C') {
             	ultimaFrase = (ultimaFrase.split("C", 2))[1];
             	
             	if (!ultimaFrase.equals("###"))
-            		ultimaFrase = conexao.getInetAddress() + " >> " + ultimaFrase;
+            		ultimaFrase = "C" + conexao.getInetAddress() + " >> " + ultimaFrase;
             }
-            
-            System.out.println("=> Ultima frase: " + ultimaFrase);
             
             setChanged();
             notifyObservers();
+            
+            System.out.println("=> UltimaFrase: " + ultimaFrase);
             
         } catch (NoSuchElementException e) {
             // TODO
