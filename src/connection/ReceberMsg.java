@@ -1,0 +1,21 @@
+package connection;
+
+public class ReceberMsg extends Thread {
+	
+    private ClienteN cliente;
+	
+    public ReceberMsg(ClienteN c) {
+        cliente = c;
+    }
+    
+    @Override
+    public void run() {
+        while(!cliente.getUltimaFrase().equals("###")) {
+            cliente.esperarMensagem();
+        }
+        
+        cliente.close();
+        System.out.println("=> Voce parou de receber mensagens do Cliente " + cliente.getNumeroDoCliente());
+    }
+
+}
