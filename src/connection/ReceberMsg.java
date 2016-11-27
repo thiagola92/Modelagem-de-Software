@@ -10,7 +10,7 @@ public class ReceberMsg extends Thread {
     
     @Override
     public void run() {
-        while(!cliente.getUltimaFrase().equals("###")) {
+        while(!cliente.getUltimaFraseRecebida().equals("###")) {
             cliente.esperarMensagem();
         }
         

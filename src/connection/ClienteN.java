@@ -16,6 +16,9 @@ import java.util.Scanner;
 public class ClienteN extends Observable {
     
     private int numeroDoCliente;
+    
+    // Informacoes do usuario
+    private String nickname;
     private String ultimaFraseRecebida;
     
     // Conexao
@@ -34,10 +37,18 @@ public class ClienteN extends Observable {
         ultimaFraseRecebida = "";
         conexao = c;
         
-	try {
+        try {
             
             entrada = new Scanner(conexao.getInputStream());
             saida = new PrintStream(conexao.getOutputStream());
+            
+            esperarMensagem();
+            nickname = ultimaFraseRecebida;
+            
+            rm = new ReceberMsg(this);
+            rm.start();
+            
+            System.out.println("=> Cliente " + numeroDoCliente + " criado");
             
         } catch (IndexOutOfBoundsException e) {
             // TODO
@@ -57,17 +68,12 @@ public class ClienteN extends Observable {
             System.out.println("=> IOException - if an I/O error occurs when creating the output stream or if the socket is not connected.");
             e.printStackTrace();
         }
-        
-        rm = new ReceberMsg(this);
-        rm.start();
-        
-        System.out.println("=> Cliente " + numeroDoCliente + " criado");
     }
     
     public void esperarMensagem() {
         System.out.println("=> Aguardando mensagem");
 
-	try {
+        try {
             
             ultimaFraseRecebida = entrada.nextLine();
         	System.out.println("=> Mensagem recebida: " + ultimaFraseRecebida);
@@ -114,15 +120,16 @@ public class ClienteN extends Observable {
             conexao.close();
             entrada.close();
             saida.close();
+            
+        	System.out.println("=> Cliente finalizado");
 			
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("=> IOException - If an I/O error occurs.");
             System.out.println("=> IOException - if an I/O error occurs when closing this socket.");
             e.printStackTrace();
-	}
+        }
 		
-	System.out.println("=> Cliente finalizado");
     }
 
     ////////////////////////////////////
@@ -135,7 +142,7 @@ public class ClienteN extends Observable {
         return numeroDoCliente;
     }
     
-    public String getUltimaFrase() {
+    public String getUltimaFraseRecebida() {
         return ultimaFraseRecebida;
     }
     
