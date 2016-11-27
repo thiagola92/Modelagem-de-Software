@@ -45,6 +45,8 @@ public class ClienteN extends Observable {
             esperarMensagem();
             nickname = ultimaFraseRecebida;
             
+            System.out.println("=> Nickname do cliente: " + nickname);
+            
             rm = new ReceberMsg(this);
             rm.start();
             
@@ -76,7 +78,7 @@ public class ClienteN extends Observable {
         try {
             
             ultimaFraseRecebida = entrada.nextLine();
-        	System.out.println("=> Mensagem recebida: " + ultimaFraseRecebida);
+        	System.out.println("=> Mensagem recebida (com prefixo): " + ultimaFraseRecebida);
             
         	if(ultimaFraseRecebida.charAt(0) == 'C') {
             	ultimaFraseRecebida = (ultimaFraseRecebida.split("C", 2))[1];
@@ -87,8 +89,6 @@ public class ClienteN extends Observable {
             
             setChanged();
             notifyObservers();
-            
-            System.out.println("=> UltimaFrase: " + ultimaFraseRecebida);
             
         } catch (NoSuchElementException e) {
             // TODO
