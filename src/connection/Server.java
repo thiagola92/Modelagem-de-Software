@@ -75,7 +75,7 @@ public class Server extends Thread implements Observer {
         try {
             
             ClienteN cliente = conexoes.get(indice);
-            cliente.enviarMensagem(cliente.getId() + mensagem);
+            cliente.enviarMensagem(mensagem);
             
         } catch (IndexOutOfBoundsException e) {
             // TODO
@@ -110,7 +110,7 @@ public class Server extends Thread implements Observer {
         ClienteN cliente = (ClienteN)obs;
         for(int i=0; i < conexoes.size(); i++) {
             if(i != cliente.getNumeroDoCliente())
-                enviarMensagem(": " + cliente.getUltimaFrase(), i);
+                enviarMensagem(cliente.getUltimaFrase(), i);
         }
         
         System.out.println("=> Mensagem enviada a todos");

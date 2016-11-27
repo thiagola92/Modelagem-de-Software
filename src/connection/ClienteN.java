@@ -70,6 +70,17 @@ public class ClienteN extends Observable {
 	try {
             
             ultimaFrase = entrada.nextLine();
+        	System.out.println("=> Mensagem recebida: " + ultimaFrase);
+            
+            if(ultimaFrase.charAt(0) == 'C') {
+            	ultimaFrase = (ultimaFrase.split("C", 2))[1];
+            	
+            	if (!ultimaFrase.equals("###"))
+            		ultimaFrase = conexao.getInetAddress() + " >> " + ultimaFrase;
+            }
+            
+            System.out.println("=> Ultima frase: " + ultimaFrase);
+            
             setChanged();
             notifyObservers();
             
@@ -80,16 +91,15 @@ public class ClienteN extends Observable {
             
             System.out.println("=> NoSuchElementException - if no line was found");
             e.printStackTrace();
-	} catch (IllegalStateException e) {
+        } catch (IllegalStateException e) {
             // TODO
             
             ultimaFrase = "###";
             
             System.out.println("=> IllegalStateException - if this scanner is closed");
             e.printStackTrace();
-	}
+        }
 
-        System.out.println("=> Mensagem recebida");
     }
     
     public void enviarMensagem(String mensagem) {
