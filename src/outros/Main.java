@@ -1,3 +1,4 @@
+package outros;
 
 import connection.Server;
 import java.util.Scanner;
