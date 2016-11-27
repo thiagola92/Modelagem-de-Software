@@ -14,7 +14,6 @@ public class Main {
         while(!s.getUltimoComando().equals("###")) {
             s.setUltimoComando(scan.nextLine());
         }
-        s.close();
         
         System.out.println("=> Server finalizando");
     }

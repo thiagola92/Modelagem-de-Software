@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class ClienteN extends Observable {
     
     private int numeroDoCliente;
-    private String ultimaFrase;
+    private String ultimaFraseRecebida;
     
     // Conexao
     private Socket conexao;
@@ -31,7 +31,7 @@ public class ClienteN extends Observable {
     public ClienteN(int i, Socket c) {
         
         numeroDoCliente = i;
-        ultimaFrase = "";
+        ultimaFraseRecebida = "";
         conexao = c;
         
 	try {
@@ -69,32 +69,32 @@ public class ClienteN extends Observable {
 
 	try {
             
-            ultimaFrase = entrada.nextLine();
-        	System.out.println("=> Mensagem recebida: " + ultimaFrase);
+            ultimaFraseRecebida = entrada.nextLine();
+        	System.out.println("=> Mensagem recebida: " + ultimaFraseRecebida);
             
-        	if(ultimaFrase.charAt(0) == 'C') {
-            	ultimaFrase = (ultimaFrase.split("C", 2))[1];
+        	if(ultimaFraseRecebida.charAt(0) == 'C') {
+            	ultimaFraseRecebida = (ultimaFraseRecebida.split("C", 2))[1];
             	
-            	if (!ultimaFrase.equals("###"))
-            		ultimaFrase = "C" + conexao.getInetAddress() + " >> " + ultimaFrase;
+            	if (!ultimaFraseRecebida.equals("###"))
+            		ultimaFraseRecebida = "C" + conexao.getInetAddress() + " >> " + ultimaFraseRecebida;
             }
             
             setChanged();
             notifyObservers();
             
-            System.out.println("=> UltimaFrase: " + ultimaFrase);
+            System.out.println("=> UltimaFrase: " + ultimaFraseRecebida);
             
         } catch (NoSuchElementException e) {
             // TODO
             
-            ultimaFrase = "###";
+            ultimaFraseRecebida = "###";
             
             System.out.println("=> NoSuchElementException - if no line was found");
             e.printStackTrace();
         } catch (IllegalStateException e) {
             // TODO
             
-            ultimaFrase = "###";
+            ultimaFraseRecebida = "###";
             
             System.out.println("=> IllegalStateException - if this scanner is closed");
             e.printStackTrace();
@@ -136,7 +136,7 @@ public class ClienteN extends Observable {
     }
     
     public String getUltimaFrase() {
-        return ultimaFrase;
+        return ultimaFraseRecebida;
     }
     
 }

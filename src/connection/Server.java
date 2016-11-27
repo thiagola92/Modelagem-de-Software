@@ -49,6 +49,8 @@ public class Server extends Thread implements Observer {
             conexoes.put(numeroDeConexoes, cliente);
             numeroDeConexoes++;
             
+            System.out.println("=> Uma conexao foi estabelecida com Cliente " + (numeroDeConexoes-1));
+            
         } catch (SocketTimeoutException e) {
             // TODO
             System.out.println("=> SocketTimeoutException - if a timeout was previously set with setSoTimeout and the timeout has been reached.");
@@ -67,7 +69,6 @@ public class Server extends Thread implements Observer {
             e.printStackTrace();
         }   
         
-        System.out.println("=> Uma conexao foi estabelecida com Cliente " + (numeroDeConexoes-1));
     }
         
     public void enviarMensagem(String mensagem, int indice) {
