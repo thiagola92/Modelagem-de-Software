@@ -47,6 +47,8 @@ public class ClienteN extends Observable {
             
             System.out.println("=> Nickname do cliente: " + nickname);
             
+            enviarMensagem("R" + numeroDoCliente);
+            
             rm = new ReceberMsg(this);
             rm.start();
             
