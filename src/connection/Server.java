@@ -12,6 +12,7 @@ import java.util.Observer;
 public class Server extends Thread implements Observer {
     
     private int numeroDeConexoes;
+    private int numeroMaxDeConexoes;
     private int porta;
     private String ultimoComando;
     
@@ -23,6 +24,7 @@ public class Server extends Thread implements Observer {
         
         ultimoComando = "";
         numeroDeConexoes = 0;
+        numeroMaxDeConexoes = 2;
         porta = 8;
         
         try {
@@ -118,9 +120,12 @@ public class Server extends Thread implements Observer {
     }
     
     public void run() {
-        while(!ultimoComando.equals("###")) {
+        while(!ultimoComando.equals("###") && numeroDeConexoes != numeroMaxDeConexoes) {
             receberConexao();
         }
+        
+        for(int i = 0; i < numeroMaxDeConexoes; i++ )
+        	enviarMensagem("N", i);
         
         System.out.println("=> Nao esta recebendo mais conexoes");
     }
