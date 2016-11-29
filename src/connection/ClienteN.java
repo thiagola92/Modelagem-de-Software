@@ -81,9 +81,10 @@ public class ClienteN extends Observable {
         	System.out.println("=> Mensagem recebida (com prefixo): " + ultimaFraseRecebida);
             
         	if(ultimaFraseRecebida.charAt(0) == 'C') {
+        		
             	ultimaFraseRecebida = (ultimaFraseRecebida.split("C", 2))[1];
             	
-            	if (!ultimaFraseRecebida.equals("###"))
+            	if(!ultimaFraseRecebida.equals("###"))
             		ultimaFraseRecebida = "C" + nickname + " >> " + ultimaFraseRecebida;
             }
             
