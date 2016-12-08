@@ -8,6 +8,8 @@ import java.nio.channels.IllegalBlockingModeException;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Server extends Thread implements Observer {
     
@@ -18,6 +20,8 @@ public class Server extends Thread implements Observer {
     
     private ServerSocket server;
     private HashMap<Integer,ClienteN> conexoes;
+    
+    private Timer timer;
     
     
     public Server()  {
@@ -50,6 +54,21 @@ public class Server extends Thread implements Observer {
             cliente.addObserver(this);
             conexoes.put(numeroDeConexoes, cliente);
             numeroDeConexoes++;
+            if (numeroDeConexoes == 1) {
+            	timer = new Timer();
+            	timer.schedule(new TimerTask() {
+            		  @Override
+            		  public void run() {
+            			  if (numeroDeConexoes != numeroMaxDeConexoes) {
+            				  System.out.println("=> Out of time");
+            				  for (int i = 0; i < conexoes.size(); i++)
+            					  enviarMensagem("C=> Conexao finalizada, tempo maximo excedido", i);
+            				  setUltimoComando("###");
+            				  close();
+            			  }
+            		  }
+            		}, 3*60*1000);
+            }
             
             System.out.println("=> Uma conexao foi estabelecida com Cliente " + (numeroDeConexoes-1));
             
@@ -97,8 +116,10 @@ public class Server extends Thread implements Observer {
             
             for(int i=0; i < conexoes.size(); i++) {
                 ClienteN temp = conexoes.get(i);
-                if (temp != null)
+                if (temp != null) {
+                	temp.setUltimaFraseRecebida("###");
                     temp.close();
+                }
             }
         } catch (IOException e) {
             System.out.println("=> IOException - if an I/O error occurs when closing the socket.");
@@ -123,10 +144,10 @@ public class Server extends Thread implements Observer {
         while(!ultimoComando.equals("###") && numeroDeConexoes != numeroMaxDeConexoes) {
             receberConexao();
         }
-        
-        for(int i = 0; i < numeroMaxDeConexoes; i++ )
-        	enviarMensagem("N", i);
-        
+        if (!ultimoComando.equals("###")) {
+	        for(int i = 0; i < numeroMaxDeConexoes; i++ )
+	        	enviarMensagem("N", i);
+        }
         System.out.println("=> Nao esta recebendo mais conexoes");
     }
     

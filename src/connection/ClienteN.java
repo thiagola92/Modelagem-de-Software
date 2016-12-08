@@ -149,4 +149,8 @@ public class ClienteN extends Observable {
         return ultimaFraseRecebida;
     }
     
+    public void setUltimaFraseRecebida (String s) {
+    	this.ultimaFraseRecebida = s;
+    }
+    
 }
