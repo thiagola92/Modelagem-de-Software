@@ -55,22 +55,26 @@ public class ClienteN extends Observable {
             System.out.println("=> Cliente " + numeroDoCliente + " criado");
             
         } catch (IndexOutOfBoundsException e) {
-            // TODO
+
+            System.out.println("=> ClientN > ClientN");
             System.out.println("=> IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (FileNotFoundException e) {
-            // TODO
+
+            System.out.println("=> ClientN > ClientN");
             System.out.println("=> FileNotFoundException - If the given file object does not denote an existing, writable regular file and a new regular file of that name cannot be created, or if some other error occurs while opening or creating the file");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (SecurityException e) {
-            // TODO
+
+            System.out.println("=> ClientN > ClientN");
             System.out.println("=> SecurityException - If a security manager is present and checkWrite(file.getPath()) denies write access to the file");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (IOException e) {
-            // TODO
+        	
+            System.out.println("=> ClientN > ClientN");
             System.out.println("=> IOException - if an I/O error occurs when creating the input stream, the socket is closed, the socket is not connected, or the socket input has been shutdown using shutdownInput()");
             System.out.println("=> IOException - if an I/O error occurs when creating the output stream or if the socket is not connected.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     
@@ -93,20 +97,30 @@ public class ClienteN extends Observable {
             setChanged();
             notifyObservers();
             
+            if(ultimaFraseRecebida.equals("###"))
+            	close();
+            
         } catch (NoSuchElementException e) {
-            // TODO
             
             ultimaFraseRecebida = "###";
-            
+
+            System.out.println("=> ClientN > esperarMensagem");
             System.out.println("=> NoSuchElementException - if no line was found");
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (IllegalStateException e) {
-            // TODO
             
             ultimaFraseRecebida = "###";
-            
+
+            System.out.println("=> ClientN > esperarMensagem");
             System.out.println("=> IllegalStateException - if this scanner is closed");
-            e.printStackTrace();
+            //e.printStackTrace();
+        } catch (Exception e) {
+            
+            ultimaFraseRecebida = "###";
+
+            System.out.println("=> ClientN > esperarMensagem");
+            System.out.println("=> Exception - ");
+            //e.printStackTrace();
         }
 
     }
@@ -118,19 +132,24 @@ public class ClienteN extends Observable {
     }
     
     public void close() {
+    	
         try {
+        	System.out.println("=> Cliente finalizando");
 			
-            conexao.close();
-            entrada.close();
-            saida.close();
+        	if(conexao.isClosed() == false) {
+        		conexao.close();
+        		entrada.close();
+            	saida.close();
+        	}
             
         	System.out.println("=> Cliente finalizado");
 			
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+        	
+            System.out.println("=> ClientN > close");
             System.out.println("=> IOException - If an I/O error occurs.");
             System.out.println("=> IOException - if an I/O error occurs when closing this socket.");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 		
     }

@@ -14,7 +14,6 @@ public class ReceberMsg extends Thread {
             cliente.esperarMensagem();
         }
         
-        cliente.close();
         System.out.println("=> Voce parou de receber mensagens do Cliente " + cliente.getNumeroDoCliente());
     }
 

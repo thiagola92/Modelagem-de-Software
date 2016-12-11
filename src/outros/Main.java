@@ -10,12 +10,13 @@ public class Main {
         Server s = new Server();
         s.start();
         
-        Scanner scan = new Scanner(System.in);
-        while(!s.getUltimoComando().equals("###")) {
-            s.setUltimoComando(scan.nextLine());
+		Scanner scan = new Scanner(System.in);
+        while(!scan.nextLine().equals("###") && s.isClosed() == false) {
         }
         
-        System.out.println("=> Server finalizando");
+        s.close();
+        scan.close();
+        System.out.println("=> Main finalizada");
     }
     
 }
