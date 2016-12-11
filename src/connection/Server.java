@@ -26,7 +26,7 @@ public class Server extends Thread implements Observer {
     public Server()  {
     	
         numeroDeConexoes = 0;
-        numeroMaxDeConexoes = 2;
+        numeroMaxDeConexoes = 4;
         porta = 8;
         
         try {
