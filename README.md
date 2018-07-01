@@ -1,6 +1,8 @@
 # PUC-INF1013
 Modelagem de Software
 
+**Youtube**: https://www.youtube.com/watch?v=YgEb-OQOXJM  
+
 # About
 O foco do trabalho era implementar corretamente as técnicas de design pattern e programação vistas durante o curso.  
 [Enunciado](https://github.com/thiagola92/PUC-INF1013-Relogio/blob/master/1121561/RelogioDigital.pdf)  
