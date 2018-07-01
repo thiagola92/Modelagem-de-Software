@@ -36,5 +36,5 @@ Caso os números que representem a hora estejam vermelhos, se encontra no estado
 Caso os números que representem a minuto estejam vermelhos, se encontra no estado *mudando minuto*  
 
 3) Relógio analógico  
-![relogio analogico](analogico.png)  
+![relogio analogico](img/analogico.png)  
 Esse relógio não exibe o estado mas exibe os minutos.  
