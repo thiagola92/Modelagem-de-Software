@@ -1,0 +1,95 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Thiago
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws Exception {
+        
+        ServerSocket servidor = new ServerSocket(8);
+        
+        /*
+        Você apenas criou o ServerSocket,
+        ele não esta esperando ninguém se conectar nem nada,
+        então ele vai recusar todos que tentarem se conectar
+        */
+        
+        Socket conexao = servidor.accept();
+        
+        /*
+        servidor.accept() é um loop, fica checando se tem alguém tentando
+        se conectar, quando encontrar alguém, vai aceitar e retornar o socket
+        com qual você esta se comunicando
+        */
+        
+        System.out.println("Criou um socket (criou a conexao com um cliente)");
+        
+        BufferedReader mensagemDoCliente = new BufferedReader(new InputStreamReader(conexao.getInputStream()));
+        //Scanner mensagemDoCliente_2 = new Scanner(conexao.getInputStream());
+        
+        /*
+        Caso você tenha lido o codigo do cliente
+        vai notar que tem pelo menos duas maneiras de
+        escrever na conexao do socket, então não vai
+        ficar surpreso quando eu falar que tem mais maneiras
+        de ler a conexao do socket
+        
+        Escolha UMA maneira e deixe a outra em comentario
+        
+        oracle usou BufferedReader e InputStream
+        ivan usou Scanner
+        
+        Tenho que estudar Basic I/O para entender
+        quando usar um e quando usar outro
+        */
+        
+        String mensagem = mensagemDoCliente.readLine();
+        while(mensagem != null) {
+            System.out.println(mensagem);
+            mensagem = mensagemDoCliente.readLine();
+        }
+        
+        /*
+        Simples, le uma mensagem do cliente e escreve no prompt
+        
+        Se a conexao sumir do nada, vai gerar um exception
+        e o readline nem vai retornar null
+        Por isso lembre de dar close na conexao pelo cliente
+        
+        Agora vamos tentar fazer o mesmo só que usando
+        a maneira do ivan
+        */
+        
+        conexao.close();
+        conexao = servidor.accept();
+        
+        Scanner mensagemDoCliente_2 = new Scanner(conexao.getInputStream());
+        
+        while(mensagemDoCliente_2.hasNextLine() != false) {
+            mensagem = mensagemDoCliente_2.nextLine();
+            System.out.println(mensagem);
+        }
+        
+        conexao.close();
+        servidor.close();
+        System.out.println("Finalizou");
+        
+    }
+    
+}

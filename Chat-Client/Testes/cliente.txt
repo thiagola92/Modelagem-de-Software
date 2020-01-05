@@ -1,0 +1,59 @@
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception {
+		
+		
+		Socket conexao = new Socket("127.0.0.1", 8);
+		
+		/*
+		 * Se você criar o socket, ele vai tentar já se conectar ao servidor.
+		 * Isso quer dizer que se o servidor não estiver ligado
+		 * o ip do computador vai recusar a conexao e vai ocorrer
+		 * ConnectExceptio
+		 */
+		
+		System.out.println("Criou socket (criou a conexao com um servidor)");
+		
+		PrintWriter saida = new PrintWriter(conexao.getOutputStream(), true);
+		//PrintStream saida_2 = new PrintStream(conexao.getOutputStream());
+
+		/*
+		 * getOutputStream() devolve o local onde escrever
+		 * aquilo que você quer que a outra conexão leia
+		 * 
+		 * Você pode escolher como escrever nesse local,
+		 * o tutorial da oracle usou PrintWriter,
+		 * o slide do ivan usa PrintStream
+		 * 
+		 * Escolha UMA e deixe a outra em comentario
+		 * 
+		 * Eu tenho que estudar Basic I/O para saber
+		 * quando usar cada um especialmente e as diferenças
+		 * (embora pelo nome as vezes de para entender)
+		 */
+		
+		saida.println("Mensagem do cliente (saida do cliente)");
+		saida.println("Segunda mensagem do cliente");
+		
+		/*
+		 * Agora vamos tentar mandar mensagens pela maneira
+		 * do ivan
+		 */
+		
+		conexao.close();
+		conexao = new Socket("127.0.0.1", 8);
+		
+		PrintStream saida_2 = new PrintStream(conexao.getOutputStream());
+		
+		saida_2.println("Maneira do ivan");
+		saida_2.println("Terminei os testes");
+		
+		conexao.close();
+		System.out.println("Finalizou");
+	}
+
+}
